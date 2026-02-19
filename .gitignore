@@ -1,24 +1,32 @@
-# Python
+# ============================================================
+# Python / Django  (Exercice_Django/)
+# ============================================================
+
+# Bytecode
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 
-# Virtual environments
+# Environnements virtuels
 .venv/
 venv/
 env/
-.env
 .python-version
 
-# Packaging / distribution
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Packaging / distribution Python + build front-end
 build/
 dist/
 *.egg-info/
 .eggs/
 pip-wheel-metadata/
 
-# Testing / tooling caches
+# Tests / outils d'analyse
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -34,14 +42,43 @@ htmlcov/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-/media/
-/staticfiles/
+media/
+staticfiles/
 
-# IDE / Editors
+# ============================================================
+# Node / React / Vite  (Exercice_Front/)
+# ============================================================
+
+# Dépendances
+node_modules/
+
+# Cache Vite
+.vite/
+
+# Coverage Vitest
+coverage/
+
+# Logs npm / yarn / pnpm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================================
+# IDE / Éditeurs
+# ============================================================
 .idea/
 .vscode/
 *.code-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
-# OS files
+# ============================================================
+# OS
+# ============================================================
 .DS_Store
 Thumbs.db
+desktop.ini

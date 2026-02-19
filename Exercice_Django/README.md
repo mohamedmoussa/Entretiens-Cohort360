@@ -10,7 +10,7 @@ But de l'exercice candidat: ajouter une nouvelle ressource « Prescription » av
 
 Installation des Prérequis
 ---------
-Le projet utilise Python 3.10 et Django 4.0.
+Le projet utilise Python 3.12 et Django 5.0+.
 Avant tout, vous devez vous placer dans le répertoire `Exercice_Django`.
 
 ### Python et pip

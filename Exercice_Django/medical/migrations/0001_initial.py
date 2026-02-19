@@ -7,32 +7,54 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Medication',
+            name="Medication",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(max_length=64, unique=True)),
-                ('label', models.CharField(max_length=255)),
-                ('status', models.CharField(choices=[('actif', 'actif'), ('suppr', 'suppr')], default='actif', max_length=16)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("code", models.CharField(max_length=64, unique=True)),
+                ("label", models.CharField(max_length=255)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("actif", "actif"), ("suppr", "suppr")],
+                        default="actif",
+                        max_length=16,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['code'],
+                "ordering": ["code"],
             },
         ),
         migrations.CreateModel(
-            name='Patient',
+            name="Patient",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('last_name', models.CharField(max_length=150)),
-                ('first_name', models.CharField(max_length=150)),
-                ('birth_date', models.DateField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("last_name", models.CharField(max_length=150)),
+                ("first_name", models.CharField(max_length=150)),
+                ("birth_date", models.DateField(blank=True, null=True)),
             ],
             options={
-                'ordering': ['last_name', 'first_name', 'id'],
+                "ordering": ["last_name", "first_name", "id"],
             },
         ),
     ]

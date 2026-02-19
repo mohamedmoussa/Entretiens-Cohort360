@@ -2,6 +2,82 @@
 
 > **Projet d'exercices techniques Fullstack & Data**
 
+---
+
+### Lancement rapide avec Docker Compose
+
+Les deux projets (backend Django + frontend React) se lancent ensemble depuis la racine :
+
+```bash
+docker compose up --build
+```
+
+- Backend disponible sur : http://localhost:8000
+- Frontend disponible sur : http://localhost:3000
+
+> Le backend démarre en premier (migrations + seed automatique), le frontend attend que le backend soit prêt avant de démarrer.
+
+---
+
+### Backend Django — `Exercice_Django/`
+
+**Stack :** Python 3.12 · Django 5.x · Django REST Framework · django-filter · pytest
+
+**Ce qui a été implémenté :**
+- Modèle `Prescription` lié à `Patient` et `Medication`, avec validation des dates (`end_date >= start_date`) appliquée au niveau modèle (`clean/save`) et sérialiseur
+- API REST complète : `GET`, `POST`, `PUT`, `PATCH`, `DELETE` sur `/api/prescriptions`
+- Filtres avancés : par patient, médicament, statut, et 5 opérateurs de date (exact, gte, lte, gt, lt) sur `start_date` et `end_date`, combinables
+- Pagination configurable (`page`, `page_size`, max 100)
+- Données de démonstration : `python manage.py seed_demo`
+
+**Lancer le backend (sans Docker) :**
+
+```bash
+cd Exercice_Django
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py seed_demo
+python manage.py runserver
+```
+
+**Lancer les tests Django :**
+
+```bash
+cd Exercice_Django
+pip install -r requirements-dev.txt
+pytest
+```
+
+---
+
+### Frontend React — `Exercice_Front/`
+
+**Stack :** React 18 · TypeScript · Vite · TanStack Query · React Hook Form · Tailwind CSS
+
+**Ce qui a été implémenté :**
+- Interface complète de gestion des prescriptions : liste, création, modification, suppression
+- Filtres combinables (patient, médicament, statut, dates avec opérateurs et mode intervalle)
+- Pagination côté serveur synchronisée avec le backend
+- Gestion des erreurs et états de chargement
+
+**Lancer le frontend (sans Docker) :**
+
+```bash
+cd Exercice_Front
+npm install
+npm run dev
+```
+
+**Lancer les tests React :**
+
+```bash
+cd Exercice_Front
+npm test -- --run
+```
+
+---
+
 Ce projet regroupe trois repositories distincts, chacun correspondant à un exercice technique différent dans le contexte
 d'une application médicale.
 

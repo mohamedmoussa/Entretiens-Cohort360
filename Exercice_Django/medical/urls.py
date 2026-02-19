@@ -1,11 +1,12 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import SimpleRouter
 
-from .views import PatientViewSet, MedicationViewSet
+from medical.views import MedicationViewSet, PatientViewSet, PrescriptionViewSet
 
 router = SimpleRouter(trailing_slash=False)
-router.register(r"Patient", PatientViewSet, basename="patient")
-router.register(r"Medication", MedicationViewSet, basename="medication")
+router.register(r"patients", PatientViewSet, basename="patient")
+router.register(r"medications", MedicationViewSet, basename="medication")
+router.register(r"prescriptions", PrescriptionViewSet, basename="prescription")
 
 urlpatterns = [
     path("", include(router.urls)),

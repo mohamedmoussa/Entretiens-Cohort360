@@ -1,0 +1,43 @@
+# Docker Compose global pour Backend + Frontend
+
+services:
+  # Backend Django
+  backend:
+    build: ./Exercice_Django
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py seed_demo --patients 100 --medications 50 --prescriptions 30 &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./Exercice_Django:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Exercice_Django/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/patients')"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # Frontend React
+  frontend-dev:
+    build: ./Exercice_Front
+    volumes:
+      - ./Exercice_Front:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      # Cible du proxy Vite (Node.js, non exposé au navigateur).
+      # "backend" = nom du service Docker Compose, résolu dans le réseau interne.
+      - API_PROXY_TARGET=http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
